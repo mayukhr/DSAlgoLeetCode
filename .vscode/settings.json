@@ -1,0 +1,13 @@
+{
+  // Interview prep: reduce AI ghost text / Tab completions that can leak full solutions.
+  // Workspace-only; other projects keep your user settings.
+  "editor.inlineSuggest.enabled": false,
+
+  // Cursor Tab — disable for solution languages (VS Code language IDs).
+  "cursor.cpp.disabledLanguages": [
+    "typescript",
+    "javascript",
+    "typescriptreact",
+    "javascriptreact"
+  ]
+}
