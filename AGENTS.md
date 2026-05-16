@@ -1,4 +1,4 @@
-# Agent instructions — DataStructures interview prep
+# Agent instructions — DSAlgoLeetCode interview prep
 
 This repo is for **data structures, algorithms, and LeetCode-style practice** in JavaScript/TypeScript. The human writes `solution.ts` (or `solution.js`); **agents default to generating or updating tests only**, unless the user explicitly asks for solution code.
 

@@ -1,4 +1,4 @@
-# Data Structures Repo
+# DSAlgoLeetCode Repo
 
 This repo contains DS Algo and LeetCode-style practice in JavaScript and TypeScript, mainly for interview prep.
 
