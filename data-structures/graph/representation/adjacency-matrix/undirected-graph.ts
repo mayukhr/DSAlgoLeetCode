@@ -1,4 +1,6 @@
-type Edge = [number, number];
+// https://www.geeksforgeeks.org/dsa/graph-and-its-representations/
+
+export type Edge = [number, number];
 
 export function createGraph(V: number, edges: Edge[]) {
     const adjacency_matrix = Array.from({ length: V }, () => new Array(V).fill(0));
