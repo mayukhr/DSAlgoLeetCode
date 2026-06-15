@@ -22,7 +22,7 @@ let edges = [[1, 0], [1, 2], [2, 0]];
 // Build the graph using edges
 let adj = createGraph(V, edges);
 
-console.log("Adjacency List Representation:");
+console.log("Adjacency List Representation of ", adj);
 for (let i = 0; i < V; i++) {
 
     // Print the vertex
