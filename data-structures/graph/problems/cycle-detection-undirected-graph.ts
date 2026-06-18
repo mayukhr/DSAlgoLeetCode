@@ -22,11 +22,20 @@ export function Dfs_CycleDetection(adj_list: AdjacencyList, start_node: number):
         return false;
     }
 
-    return dfs(start_node);
+    // return dfs(start_node);
+
+    for (let i = 0; i < adj_list.length; i++) {
+        if (!visited[i] && dfs(i)) {
+            return true;
+        }
+    }
+    return false;
 }
 
-const adj_list = [[1, 2], [0, 2], [1, 0], [2]];
+// const adj_list = [[1, 2], [0, 2], [1, 0], [2]];
 // const adj_list = [[1, 2], [0, 2], [0, 1, 3, 4], [2], [2]];
+// const adj_list = [[1], [0], [3,4], [2,4], [2,3]]
+const adj_list = [[1], [0], [3], [4],[3]]
 
 const start_node = 0;
 

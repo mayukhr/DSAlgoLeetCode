@@ -3,8 +3,8 @@ import { Dfs_CycleDetection } from "./cycle-detection-undirected-graph.js";
 
 /**
  * Spec: DFS cycle detection on an undirected graph represented as an adjacency list.
- * Only the connected component reachable from `start_node` is searched; cycles in
- * other components are not reported unless that component is reachable from start.
+ * Every connected component is searched; `start_node` is accepted for API compatibility
+ * but does not limit which components are checked.
  */
 describe("Dfs_CycleDetection (undirected adjacency list)", () => {
   describe("no cycle", () => {
@@ -48,7 +48,7 @@ describe("Dfs_CycleDetection (undirected adjacency list)", () => {
     });
   });
 
-  describe("cycle present (reachable from start)", () => {
+  describe("cycle present", () => {
     it("detects a triangle", () => {
       const adj: number[][] = [
         [1, 2],
@@ -93,10 +93,10 @@ describe("Dfs_CycleDetection (undirected adjacency list)", () => {
     });
   });
 
-  describe("full graph (all components)", () => {
-    it("detects a cycle in a disconnected component even when start cannot reach it", () => {
+  describe("disconnected components", () => {
+    it("detects a cycle in another component even when start cannot reach it", () => {
       // Component A: isolated vertex 0 (no edges)
-      // Component B: triangle 1—2—3—1 (cycle; unreachable from start 0)
+      // Component B: triangle 1—2—3—1
       const adj: number[][] = [
         [],
         [2, 3],
@@ -105,10 +105,8 @@ describe("Dfs_CycleDetection (undirected adjacency list)", () => {
       ];
       expect(Dfs_CycleDetection(adj, 0)).toBe(true);
     });
-  });
 
-  describe("reachability from start", () => {
-    it("does not report a cycle in a disconnected component", () => {
+    it("detects a cycle in a cyclic component while start is in an acyclic one", () => {
       // acyclic component 0—1; cyclic component 2—3—4—2
       const adj: number[][] = [
         [1],
@@ -117,21 +115,10 @@ describe("Dfs_CycleDetection (undirected adjacency list)", () => {
         [2, 4],
         [2, 3],
       ];
-      expect(Dfs_CycleDetection(adj, 0)).toBe(false);
+      expect(Dfs_CycleDetection(adj, 0)).toBe(true);
     });
 
-    it("detects a cycle when start is in the cyclic component", () => {
-      const adj: number[][] = [
-        [1],
-        [0],
-        [3, 4],
-        [2, 4],
-        [2, 3],
-      ];
-      expect(Dfs_CycleDetection(adj, 2)).toBe(true);
-    });
-
-    it("returns false for an acyclic component when start is on a leaf", () => {
+    it("returns false when every component is acyclic", () => {
       const adj: number[][] = [[1], [0, 2], [1, 3], [2]];
       expect(Dfs_CycleDetection(adj, 3)).toBe(false);
     });
